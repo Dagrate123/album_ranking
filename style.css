@@ -1,0 +1,33 @@
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+#album-list {
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: left;
+}
+.album {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 5px 0;
+    background: #f9f9f9;
+}
+
+h1 {
+    margin: 15px;
+}
+
+.album-categories {
+    margin: 15px;
+}
+
+.delete-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}

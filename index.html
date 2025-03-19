@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album Rating</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Album Rating</h1>
+    <input type="text" id="album-name" placeholder="Album Name">
+    <div class="album-categories">
+        <label>Consistency:</label> <input type="number" id="consistency" min="1" max="10">
+        <label>Variation:</label> <input type="number" id="variation" min="1" max="10">
+        <label>Lyrics:</label> <input type="number" id="lyrics" min="1" max="10">
+        <label>Production:</label> <input type="number" id="production" min="1" max="10">
+        <label>Enjoyment:</label> <input type="number" id="enjoyment" min="1" max="10">
+    </div>
+    <button onclick="addAlbum()">Add Album</button>
+    <div id="album-list"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
