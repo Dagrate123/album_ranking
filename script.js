@@ -20,7 +20,7 @@ function addAlbum() {
 
     let avg = (consistency + variation + lyrics + production + enjoyment) / 5;
     albums.push({ name, avg });
-    albums.sort((a, b) => b.avg - a.avg);
+    albums.sort((a, b) => a.avg - b.avg); // Sort from lowest to highest
     localStorage.setItem("albums", JSON.stringify(albums));
     renderAlbums();
     resetInputs();
