@@ -23,6 +23,16 @@ function addAlbum() {
     albums.sort((a, b) => b.avg - a.avg);
     localStorage.setItem("albums", JSON.stringify(albums));
     renderAlbums();
+    resetInputs();
+}
+
+function resetInputs() {
+    document.getElementById("album-name").value = "";
+    document.getElementById("consistency").value = "";
+    document.getElementById("variation").value = "";
+    document.getElementById("lyrics").value = "";
+    document.getElementById("production").value = "";
+    document.getElementById("enjoyment").value = "";
 }
 
 function deleteAlbum(index) {
