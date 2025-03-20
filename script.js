@@ -6,11 +6,11 @@ function calculateAverage(consistency, variation, lyrics, production, enjoyment)
 
 function addAlbum() {
     let name = document.getElementById("album-name").value.trim();
-    let consistency = parseInt(document.getElementById("consistency").value) || 0;
-    let variation = parseInt(document.getElementById("variation").value) || 0;
-    let lyrics = parseInt(document.getElementById("lyrics").value) || 0;
-    let production = parseInt(document.getElementById("production").value) || 0;
-    let enjoyment = parseInt(document.getElementById("enjoyment").value) || 0;
+    let consistency = Number(document.getElementById("consistency").value);
+    let variation = Number(document.getElementById("variation").value);
+    let lyrics = Number(document.getElementById("lyrics").value);
+    let production = Number(document.getElementById("production").value);
+    let enjoyment = Number(document.getElementById("enjoyment").value);
     
     if (!name) {
         alert("Please enter an album name.");
@@ -29,9 +29,21 @@ function addAlbum() {
 }
 
 function updateAlbums() {
-    albums.forEach(album => {
-        album.avg = calculateAverage(album.consistency, album.variation, album.lyrics, album.production, album.enjoyment);
-    });
+    albums = albums.map(album => ({
+        name: album.name,
+        consistency: Number(album.consistency),
+        variation: Number(album.variation),
+        lyrics: Number(album.lyrics),
+        production: Number(album.production),
+        enjoyment: Number(album.enjoyment),
+        avg: calculateAverage(
+            Number(album.consistency),
+            Number(album.variation),
+            Number(album.lyrics),
+            Number(album.production),
+            Number(album.enjoyment)
+        )
+    }));
     albums.sort((a, b) => a.avg - b.avg);
     localStorage.setItem("albums", JSON.stringify(albums));
     renderAlbums();
