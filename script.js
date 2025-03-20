@@ -1,5 +1,9 @@
 let albums = JSON.parse(localStorage.getItem("albums")) || [];
 
+function calculateAverage(consistency, variation, lyrics, production, enjoyment) {
+    return ((consistency + variation + lyrics + production) * 0.15 + enjoyment * 0.40);
+}
+
 function addAlbum() {
     let name = document.getElementById("album-name").value.trim();
     let consistency = parseInt(document.getElementById("consistency").value) || 0;
@@ -18,12 +22,19 @@ function addAlbum() {
         return;
     }
 
-    let avg = (consistency + variation + lyrics + production + enjoyment) / 5;
-    albums.push({ name, avg });
-    albums.sort((a, b) => a.avg - b.avg); // Sort from lowest to highest
+    let avg = calculateAverage(consistency, variation, lyrics, production, enjoyment);
+    albums.push({ name, avg, consistency, variation, lyrics, production, enjoyment });
+    updateAlbums();
+    resetInputs();
+}
+
+function updateAlbums() {
+    albums.forEach(album => {
+        album.avg = calculateAverage(album.consistency, album.variation, album.lyrics, album.production, album.enjoyment);
+    });
+    albums.sort((a, b) => b.avg - a.avg);
     localStorage.setItem("albums", JSON.stringify(albums));
     renderAlbums();
-    resetInputs();
 }
 
 function resetInputs() {
@@ -53,4 +64,4 @@ function renderAlbums() {
     });
 }
 
-renderAlbums();
+updateAlbums();
