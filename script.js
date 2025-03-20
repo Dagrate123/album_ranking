@@ -32,7 +32,7 @@ function updateAlbums() {
     albums.forEach(album => {
         album.avg = calculateAverage(album.consistency, album.variation, album.lyrics, album.production, album.enjoyment);
     });
-    albums.sort((a, b) => b.avg - a.avg);
+    albums.sort((a, b) => a.avg - b.avg);
     localStorage.setItem("albums", JSON.stringify(albums));
     renderAlbums();
 }
@@ -58,7 +58,7 @@ function renderAlbums() {
     albums.forEach((album, index) => {
         let div = document.createElement("div");
         div.classList.add("album");
-        div.innerHTML = `<strong>${index + 1}. ${album.name}</strong> - Average Score: ${album.avg.toFixed(2)}
+        div.innerHTML = `<strong>${index + 1}. ${album.name}</strong> - Average Score: ${album.avg.toFixed(4)}
         <button class="delete-btn" onclick="deleteAlbum(${index})">Delete</button>`;
         list.appendChild(div);
     });
