@@ -6,11 +6,11 @@ function calculateAverage(consistency, variation, lyrics, production, enjoyment)
 
 function addAlbum() {
     let name = document.getElementById("album-name").value.trim();
-    let consistency = Number(document.getElementById("consistency").value);
-    let variation = Number(document.getElementById("variation").value);
-    let lyrics = Number(document.getElementById("lyrics").value);
-    let production = Number(document.getElementById("production").value);
-    let enjoyment = Number(document.getElementById("enjoyment").value);
+    let consistency = parseFloat(document.getElementById("consistency").value) || 0;
+    let variation = parseFloat(document.getElementById("variation").value) || 0;
+    let lyrics = parseFloat(document.getElementById("lyrics").value) || 0;
+    let production = parseFloat(document.getElementById("production").value) || 0;
+    let enjoyment = parseFloat(document.getElementById("enjoyment").value) || 0;
     
     if (!name) {
         alert("Please enter an album name.");
@@ -31,20 +31,20 @@ function addAlbum() {
 function updateAlbums() {
     albums = albums.map(album => ({
         name: album.name,
-        consistency: Number(album.consistency),
-        variation: Number(album.variation),
-        lyrics: Number(album.lyrics),
-        production: Number(album.production),
-        enjoyment: Number(album.enjoyment),
+        consistency: parseFloat(album.consistency) || 0,
+        variation: parseFloat(album.variation) || 0,
+        lyrics: parseFloat(album.lyrics) || 0,
+        production: parseFloat(album.production) || 0,
+        enjoyment: parseFloat(album.enjoyment) || 0,
         avg: calculateAverage(
-            Number(album.consistency),
-            Number(album.variation),
-            Number(album.lyrics),
-            Number(album.production),
-            Number(album.enjoyment)
+            parseFloat(album.consistency) || 0,
+            parseFloat(album.variation) || 0,
+            parseFloat(album.lyrics) || 0,
+            parseFloat(album.production) || 0,
+            parseFloat(album.enjoyment) || 0
         )
     }));
-    albums.sort((a, b) => a.avg - b.avg);
+    albums.sort((a, b) => b.avg - a.avg);
     localStorage.setItem("albums", JSON.stringify(albums));
     renderAlbums();
 }
