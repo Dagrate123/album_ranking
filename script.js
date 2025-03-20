@@ -29,21 +29,15 @@ function addAlbum() {
 }
 
 function updateAlbums() {
-    albums = albums.map(album => ({
-        name: album.name,
-        consistency: parseFloat(album.consistency) || 0,
-        variation: parseFloat(album.variation) || 0,
-        lyrics: parseFloat(album.lyrics) || 0,
-        production: parseFloat(album.production) || 0,
-        enjoyment: parseFloat(album.enjoyment) || 0,
-        avg: calculateAverage(
-            parseFloat(album.consistency) || 0,
-            parseFloat(album.variation) || 0,
-            parseFloat(album.lyrics) || 0,
-            parseFloat(album.production) || 0,
-            parseFloat(album.enjoyment) || 0
-        )
-    }));
+    albums = albums.map(album => {
+        let consistency = parseFloat(album.consistency) || 1;
+        let variation = parseFloat(album.variation) || 1;
+        let lyrics = parseFloat(album.lyrics) || 1;
+        let production = parseFloat(album.production) || 1;
+        let enjoyment = parseFloat(album.enjoyment) || 1;
+        let avg = calculateAverage(consistency, variation, lyrics, production, enjoyment);
+        return { ...album, consistency, variation, lyrics, production, enjoyment, avg };
+    });
     albums.sort((a, b) => b.avg - a.avg);
     localStorage.setItem("albums", JSON.stringify(albums));
     renderAlbums();
