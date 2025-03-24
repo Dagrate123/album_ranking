@@ -6,11 +6,11 @@ function calculateAverage(consistency, variation, lyrics, production, enjoyment)
 
 function addAlbum() {
     let name = document.getElementById("album-name").value.trim();
-    let consistency = parseFloat(document.getElementById("consistency").value) || 0;
-    let variation = parseFloat(document.getElementById("variation").value) || 0;
-    let lyrics = parseFloat(document.getElementById("lyrics").value) || 0;
-    let production = parseFloat(document.getElementById("production").value) || 0;
-    let enjoyment = parseFloat(document.getElementById("enjoyment").value) || 0;
+    let consistency = parseFloat(document.getElementById("consistency").value);
+    let variation = parseFloat(document.getElementById("variation").value);
+    let lyrics = parseFloat(document.getElementById("lyrics").value);
+    let production = parseFloat(document.getElementById("production").value);
+    let enjoyment = parseFloat(document.getElementById("enjoyment").value);
     
     if (!name) {
         alert("Please enter an album name.");
@@ -30,11 +30,11 @@ function addAlbum() {
 
 function updateAlbums() {
     albums = albums.map(album => {
-        let consistency = parseFloat(album.consistency) || 1;
-        let variation = parseFloat(album.variation) || 1;
-        let lyrics = parseFloat(album.lyrics) || 1;
-        let production = parseFloat(album.production) || 1;
-        let enjoyment = parseFloat(album.enjoyment) || 1;
+        let consistency = parseFloat(album.consistency) || album.consistency === 0 ? album.consistency : 1;
+        let variation = parseFloat(album.variation) || album.variation === 0 ? album.variation : 1;
+        let lyrics = parseFloat(album.lyrics) || album.lyrics === 0 ? album.lyrics : 1;
+        let production = parseFloat(album.production) || album.production === 0 ? album.production : 1;
+        let enjoyment = parseFloat(album.enjoyment) || album.enjoyment === 0 ? album.enjoyment : 1;
         let avg = calculateAverage(consistency, variation, lyrics, production, enjoyment);
         return { ...album, consistency, variation, lyrics, production, enjoyment, avg };
     });
